@@ -4,10 +4,22 @@
 let taskHolder = document.getElementById("taskDiv");
 let values = undefined;
 try {
-    values = chrome.storage.sync.get(values);
+    chrome.storage.sync.get(['values'], function(result){
+        console.log(result.values);
+        values = result.values;
+        if(values != undefined){
+            insertValues(taskHolder, values);
+        }
+    })
 } catch (error) {
-    taskHolder.innerText = "There was a problem in retrieving the tasks."
+    taskHolder.innerText = "There was a problem in retrieving the tasks.";
 }
-if(values != undefined){
-    taskHolder.innerText = values;
+
+function insertValues(taskHolder, values){
+    console.log(values.length);
+    let i;
+    taskHolder.innerHTML = ``;
+    for (i = 0; i<values.length; i++){
+        taskHolder.innerHTML = taskHolder.innerHTML + `<div>${values[i]}</div>`;
+    }
 }
