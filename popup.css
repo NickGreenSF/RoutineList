@@ -1,3 +1,13 @@
 body{
     width: 25em;
 }
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.title{
+    font-style: italic;
+    font-size: large;
+    padding: 3px;
+}
