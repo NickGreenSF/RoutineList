@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="checkmark.css">
+    <link rel="stylesheet" href="options.css">
   </head>
   <body>
-    <div>
-      <p>RoutineList options page!</p>
+    <h1>
+      <p class="title">RoutineList</p>
+    </h1>
+    <div id="taskHolder">
+      <button id="addTask" class="task">+ Add Task</button>
     </div>
+    <div id="addModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="close">&times;</span>
+        <form id="taskForm">
+          <button type="submit">here is bob</button>
+        </form>
+      </div>
+    </div>
+    <div id="taskModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="close">&times;</span>
+        <span>This is the edit task window.</span>
+      </div>
+    </div>
+    <script src="options.js"></script>
   </body>
 </html>
