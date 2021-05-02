@@ -44,3 +44,60 @@ body{
 .task{
   width: 40%;
 }
+
+form div{
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 50%;
+  text-align: center;
+  font-size: xx-large;
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: 5%;
+}
+
+div input[type=text], div input[type=time]{
+  font-size: xx-large;
+  width: 100%;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+input[type=time]{
+  text-align: center;
+}
+
+.week input {
+  position: absolute;
+  opacity: 0;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.week input:checked + .checkmark svg {
+  transform: scale(1);
+}
+
+table{
+  margin-left: auto;
+  margin-right: auto;
+  font-style: italic;
+}
+
+.weekdays{
+  margin-top: 0%;
+}
+
+button{
+  border: 2px solid bisque;
+  background-color: beige;
+  font-size: xx-large;
+  font-family: 'Times New Roman', Times, serif;
+  padding-left: 5%;
+  padding-top: 3%;
+  padding-right: 5%;
+  padding-bottom: 3%;
+}
+
+.delete{
+  background-color: lightsalmon;
+}

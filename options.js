@@ -4,15 +4,21 @@
 
 // Get the modal1
 let modal1 = document.getElementById("addModal");
+let modal2 = document.getElementById("editModal");
 let btn = document.getElementById("addTask");
-let span = document.getElementById("close");
+//let span = document.getElementById("close");
+let closes = document.getElementsByClassName("close");
 let taskHolder = document.getElementById("taskHolder");
 
 btn.onclick = function() {
   modal1.style.display = "block";
 }
 
-span.onclick = function() {
+
+closes[1].onclick = function() {
+  modal2.style.display = "none";
+}
+closes[0].onclick = function(){
   modal1.style.display = "none";
 }
 
@@ -20,11 +26,14 @@ window.onclick = function(event) {
   if (event.target == modal1) {
     modal1.style.display = "none";
   }
+  else if (event.target == modal2){
+    modal2.style.display = "none";
+  }
 }
 
 try {
   chrome.storage.sync.get(['values'], function(result){
-      //console.log(result.values);
+      console.log(result.values);
       values = result.values;
       if(values != undefined){
         //values[0][3] = !values[0][3];
@@ -43,22 +52,23 @@ try {
                 let storedMinute = parseInt(f[1]);
                 let storedTime = storedMinute+(storedHour*60);
                 //console.log(storedTime+" "+currentTime);
-                if (currentTime>storedTime){
-                    // has to be later in the day to reset the check
-                    let d = new Date(values[i][4]);
-                    if (d.getDay() in values[i][2]){
-                        if (d.getDate()>e.getDate() || (d.getDate() == 31 && e.getDate() == 1)){
-                            values[i][3] = false;
-                        }
-                        else if (d.getDate() == e.getDate()){
-                            // if clicktime < storedtime
-                            let clickTime = (d.getHours()*60)+d.getMinutes();
-                            if (clickTime < storedTime){
-                                values[i][3] = false;
-                            }
-                        }
+                let d = new Date(values[i][4]);
+                if (currentTime>storedTime || (d.getDate()<e.getDate() || (d.getDate() > 1 && e.getDate() == 1))){
+                  // has to be later in the day to reset the check
+                  console.log(d.getDate()+" "+e.getDate());
+                  if (e.getDay() in values[i][2]){
+                    if ((d.getDate()-e.getDate() == -1 || (d.getDate() == 31 && e.getDate() == 1)) || d.getDate() == e.getDate()){
+                      let clickTime = (d.getHours()*60)+d.getMinutes();
+                      console.log(clickTime+" "+storedTime);
+                      if (clickTime < storedTime){
+                          values[i][3] = false;
+                      }
                     }
-                }
+                    else{
+                        values[i][3] = false;
+                    }
+                  }
+              }
             }
             
         }
@@ -76,7 +86,7 @@ function updateTasks(values){
   for (i = 0; i<values.length; i++){
     const isTrue = values[i][3];
     taskHolder.innerHTML = taskHolder.innerHTML + 
-    `<div class="task">
+    `<div class="task" id=${i}>
         <input type="checkbox" class="check" id="checkbox${i}" ${isTrue ? `checked` : ``}>
         <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
         <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
@@ -93,6 +103,15 @@ function updateTasks(values){
     });
   }
   // We have to add the click listener again.
+  let tasks = document.getElementsByClassName("task");
+  for (i = 0; i<tasks.length-1; i++){
+    tasks[i].onclick = function(event){
+      if (event.target.className == "check"){
+        return;
+      }
+      editTaskModal(this.id);
+    }
+  }
   btn = document.getElementById("addTask");
   btn.onclick = function() {
     modal1.style.display = "block";
@@ -119,5 +138,117 @@ function checkBoxClick(id){
 
 let taskForm = document.getElementById("taskForm");
 taskForm.onsubmit = function(){
-  console.log("submit");
+  changeTask(-1, taskForm);
+}
+
+function editTaskModal(id){
+  console.log(id);
+  modal2.style.display = "block";
+  let form = document.getElementById("editTaskForm");
+  console.log(form.querySelectorAll("input"));
+  let inputs = form.querySelectorAll("input");
+  chrome.storage.sync.get(['values'], function(result){
+    let current = result.values[id];
+    console.log(current);
+    let j = 0;
+    for (let i = 0; i<inputs.length; i++){
+      console.log(inputs[i].className);
+      if (inputs[i].className == "name"){
+        inputs[i].value = current[0];
+      }
+      else if (inputs[i].className == "time"){
+        inputs[i].value = current[1];
+      }
+      else if (inputs[i].className == "check"){
+        inputs[i].checked = current[2].includes(j);
+        //console.log(i+" "+j+" "+current[2]+" "+inputs[i].checked+" "+(j in current[2])+" "+j+" "+current[2].includes(j));
+        j++;
+      }
+    }
+    let buttons = form.querySelectorAll("button");
+    console.log(buttons);
+    buttons[0].onclick = function(){
+      changeTask(id, form);
+    }
+    buttons[1].onclick = function(){
+      deleteTask(id);
+    }
+  })
+}
+
+function changeTask(id, form){
+  // if id is -1, a new task is created, if not, the task at that ID is updated to reflect the values in the form.
+  let inputs = form.querySelectorAll("input");
+  if (id == -1){
+    let weekdays = [];
+    console.log(inputs[0].value);
+    chrome.storage.sync.get(['values'], function(result){
+      let values = result.values;
+      let current = ["", "", [], false, (new Date()).getTime()];
+      console.log(current);
+      let j = 0;
+      for (let i = 0; i<inputs.length; i++){
+        console.log(inputs[i].className);
+        if (inputs[i].className == "name"){
+          console.log(inputs[i].value);
+          current[0] = inputs[i].value;
+        }
+        else if (inputs[i].className == "time"){
+          current[1] = inputs[i].value;
+        }
+        else if (inputs[i].className == "check"){
+          if (inputs[i].checked){
+            console.log(weekdays);
+            weekdays.push(i-2);
+          }
+          j++;
+        }
+      }
+      current[2] = weekdays;
+      console.log(current);
+      values.push(current);
+      chrome.storage.sync.set({values: values});
+    })
+    alert("Your task has been submitted.");
+  }
+  else{
+    let weekdays = [];
+    console.log(inputs[0].value);
+    chrome.storage.sync.get(['values'], function(result){
+      let values = result.values;
+      let current = values[id];
+      console.log(current);
+      let j = 0;
+      for (let i = 0; i<inputs.length; i++){
+        console.log(inputs[i].className);
+        if (inputs[i].className == "name"){
+          console.log(inputs[i].value);
+          current[0] = inputs[i].value;
+        }
+        else if (inputs[i].className == "time"){
+          current[1] = inputs[i].value;
+        }
+        else if (inputs[i].className == "check"){
+          if (inputs[i].checked){
+            console.log(weekdays);
+            weekdays.push(i-2);
+          }
+          j++;
+        }
+      }
+      current[2] = weekdays;
+      console.log(current);
+      chrome.storage.sync.set({values: values});
+    })
+    alert("Your task has been changed.");
+  }
+}
+
+function deleteTask(id){
+  chrome.storage.sync.get(['values'], function(result){
+    let values = result.values;
+    values[id] = values[0];
+    values.shift();
+    chrome.storage.sync.set({values: values});
+  })
 }

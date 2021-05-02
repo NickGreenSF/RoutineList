@@ -13,16 +13,183 @@
     </div>
     <div id="addModal" class="modal">
       <div class="modal-content">
-        <span class="close" id="close">&times;</span>
+        <span class="close">&times;</span>
         <form id="taskForm">
-          <button type="submit">here is bob</button>
+          <div>
+            Task Name
+          </div>
+          <div>
+            <input class="name" type="text">
+          </div>
+          <div>
+            Time
+          </div>
+          <div>
+            <input class="time" type="time">
+          </div>
+          <div class="week">
+            <table>
+              <tr>
+                <td>
+                  <input type="checkbox" class="check" checked>
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+                <td>
+                  <input type="checkbox" class="check" checked>
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+                <td>
+                  <input type="checkbox" class="check" checked>
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+                <td>
+                  <input type="checkbox" class="check" checked>
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+                <td>
+                  <input type="checkbox" class="check" checked>
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+                <td>
+                  <input type="checkbox" class="check" checked>
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+                <td>
+                  <input type="checkbox" class="check" checked>
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  M
+                </td>
+                <td>
+                  Tu
+                </td>
+                <td>
+                  W
+                </td>
+                <td>
+                  Th
+                </td>
+                <td>
+                  F
+                </td>
+                <td>
+                  Sa
+                </td>
+                <td>
+                  Su
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="weekdays">
+            Reset days
+          </div>
+          <div>
+            <button type="submit">Create Task</button>
+          </div>
         </form>
       </div>
     </div>
-    <div id="taskModal" class="modal">
+    <div id="editModal" class="modal">
       <div class="modal-content">
-        <span class="close" id="close">&times;</span>
-        <span>This is the edit task window.</span>
+        <span class="close">&times;</span>
+        <form id="editTaskForm">
+          <div>
+            Task Name
+          </div>
+          <div>
+            <input class="name" type="text">
+          </div>
+          <div>
+            Time
+          </div>
+          <div>
+            <input class="time" type="time">
+          </div>
+          <div class="week">
+            <table>
+              <tr>
+                <td>
+                  <input type="checkbox" class="check">
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+                <td>
+                  <input type="checkbox" class="check">
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+                <td>
+                  <input type="checkbox" class="check">
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+                <td>
+                  <input type="checkbox" class="check">
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+                <td>
+                  <input type="checkbox" class="check">
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+                <td>
+                  <input type="checkbox" class="check">
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+                <td>
+                  <input type="checkbox" class="check">
+                  <span class="checkmark"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
+                  <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg></span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  M
+                </td>
+                <td>
+                  Tu
+                </td>
+                <td>
+                  W
+                </td>
+                <td>
+                  Th
+                </td>
+                <td>
+                  F
+                </td>
+                <td>
+                  Sa
+                </td>
+                <td>
+                  Su
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="weekdays">
+            Reset days
+          </div>
+          <div>
+            <button type="submit">Edit Task</button>
+          </div>
+          <div>
+            <button class="delete" type="submit">Delete Task</button>
+          </div>
+        </form>
       </div>
     </div>
     <script src="options.js"></script>

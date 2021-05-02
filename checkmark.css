@@ -8,6 +8,7 @@
     margin-left: 5%;
     margin-bottom: .5em;
     padding: .5em;
+    cursor: pointer;
   }
   
   .task input {
@@ -36,9 +37,9 @@
     transform: scale(1);
   }
 
-  #addTask{
+  /*addTask{
       cursor:pointer;
-  }
+  }*/
 
   .title{
     margin-left: 5%;
