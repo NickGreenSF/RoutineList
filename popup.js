@@ -24,36 +24,24 @@ try {
                     let storedHour = parseInt(f[0]);
                     let storedMinute = parseInt(f[1]);
                     let storedTime = storedMinute+(storedHour*60);
-                    console.log(storedTime+" "+currentTime);
+                    //console.log(storedTime+" "+currentTime);
                     let d = new Date(values[i][4]);
-                    // This conditional is not well organized but I think it does what it's supposed to do.
                     if (currentTime>storedTime || (d.getDate()<e.getDate() || (d.getDate() > 1 && e.getDate() == 1))){
-                        // has to be later in the day to reset the check
-                        console.log(d.getDate()+" "+e.getDate());
-                        if (values[i][2].includes((e.getDay()-1))){
-                            console.log(values[i][2]+" "+e.getDay());
-                            if ((d.getDate()-e.getDate() == -1 || (d.getDate() == 31 && e.getDate() == 1))){
-                                let clickTime = (d.getHours()*60)+d.getMinutes();
-                                console.log(clickTime+" "+storedTime);
-                                // If the click was YESTERDAY, time needs to be GREATER than stored time
-                                if (clickTime > storedTime){
-                                    values[i][3] = false;
-                                }
-                            }
-                            else if (d.getDate() == e.getDate()){
-                                let clickTime = (d.getHours()*60)+d.getMinutes();
-                                console.log(clickTime+" "+storedTime);
-                                // If it was TODAY, time needs to be LESS than stored time
-                                if (clickTime < storedTime){
-                                    values[i][3] = false;
-                                }
-                            }
-                            else{
-                                // If it was earlier than that, the time is irrelevant.
-                                values[i][3] = false;
-                            }
+                      // has to be later in the day to reset the check
+                      console.log(d.getDate()+" "+e.getDate());
+                      if (e.getDay() in values[i][2]){
+                        if ((d.getDate()-e.getDate() == -1 || (d.getDate() == 31 && e.getDate() == 1)) || d.getDate() == e.getDate()){
+                          let clickTime = (d.getHours()*60)+d.getMinutes();
+                          console.log(clickTime+" "+storedTime);
+                          if (clickTime < storedTime){
+                              values[i][3] = false;
+                          }
                         }
-                    }
+                        else{
+                            values[i][3] = false;
+                        }
+                      }
+                  }
                 }
                 
             }
