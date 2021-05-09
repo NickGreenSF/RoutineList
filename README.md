@@ -7,3 +7,5 @@ Download this folder.
 Go to Chrome Extensions manager.
 Turn on developer mode.
 Click "Load unpacked" and load the root of this repository.
+
+DEMO: https://www.youtube.com/watch?v=ZoZizZqtS9M
