@@ -206,7 +206,13 @@ function changeTask(id, form){
       }
       current[2] = weekdays;
       console.log(current);
-      values.push(current);
+      if (values == undefined){
+        console.log("trying to add task");
+        values = [current];
+      }
+      else{
+        values.push(current);
+      }
       chrome.storage.sync.set({values: values});
     })
     alert("Your task has been submitted.");
