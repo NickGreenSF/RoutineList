@@ -30,7 +30,7 @@ try {
                       // has to be later in the day to reset the check
                       console.log(d.getDate()+" "+e.getDate());
                       if (e.getDay() in values[i][2]){
-                        if ((d.getDate()-e.getDate() == -1 || (d.getDate() == 31 && e.getDate() == 1)) || d.getDate() == e.getDate()){
+                        if ((d.getDate() == e.getDate())){
                           let clickTime = (d.getHours()*60)+d.getMinutes();
                           console.log(clickTime+" "+storedTime);
                           if (clickTime < storedTime){
