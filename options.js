@@ -64,6 +64,13 @@ try {
                           values[i][3] = false;
                       }
                     }
+                    else if ((e.getDate() == 1 && d.getDate() >= 30) || e.getDate()-d.getDate() == 1){
+                        let clickTime = (d.getHours()*60)+d.getMinutes();
+                        console.log(clickTime+" "+storedTime);
+                        if (clickTime > storedTime){
+                            values[i][3] = false;
+                        }
+                    }
                     else{
                         values[i][3] = false;
                     }
