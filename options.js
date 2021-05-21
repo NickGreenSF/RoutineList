@@ -56,7 +56,7 @@ try {
                 if (currentTime>storedTime || (d.getDate()<e.getDate() || (d.getDate() > 1 && e.getDate() == 1))){
                   // has to be later in the day to reset the check
                   console.log(d.getDate()+" "+e.getDate());
-                  if (e.getDay() in values[i][2]){
+                  if (values[i][2].includes(e.getDay()-1)){
                     if ((d.getDate() == e.getDate())){
                       let clickTime = (d.getHours()*60)+d.getMinutes();
                       console.log(clickTime+" "+storedTime);
