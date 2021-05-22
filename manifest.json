@@ -1,7 +1,12 @@
 {
     "name": "RoutineList",
     "description": "Keep Track of Your Daily Tasks",
-    "version": "0.2",
+    "version": "0.3",
+    "icons": {
+      "16": "routinelist16.png",
+      "48": "routinelist48.png",
+      "128": "routinelist128.png"
+    },
     "manifest_version": 3,
     "permissions": ["storage", "activeTab", "scripting"],
     "action": {
