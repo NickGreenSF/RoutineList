@@ -8,7 +8,7 @@
       "128": "routinelist128.png"
     },
     "manifest_version": 3,
-    "permissions": ["storage", "activeTab", "scripting"],
+    "permissions": ["storage"],
     "action": {
       "default_popup": "popup.html"
     },

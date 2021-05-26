@@ -5,16 +5,111 @@
 // Get the modal1
 let modal1 = document.getElementById("addModal");
 let modal2 = document.getElementById("editModal");
+let modal3 = document.getElementById("calendarModal");
 let btn = document.getElementById("addTask");
+let calendarButton = document.getElementById("calendarButton");
 //let span = document.getElementById("close");
 let closes = document.getElementsByClassName("close");
 let taskHolder = document.getElementById("taskHolder");
+let calendar = document.getElementById("calendar");
 
 btn.onclick = function() {
   modal1.style.display = "block";
 }
+calendarButton.onclick = function() {
+  modal3.style.display = "block";
+}
 
+// The date is initialized here because the calendar needs it. In popup, it's initialized in the checkbox checker because that's
+// all that needs it.
+let e = new Date();
+let day = e.getDay()-1;
+if (day<0){
+  day = 6;
+}
 
+function populateCalendar(values){
+  // This block of code initializes the calendar. The calendar doesn't have any function beyond being seen.
+  calendar.innerHTML = ``;
+  const days = function(month,year) {
+    return new Date(year, month, 0).getDate();
+  };
+  calendar.innerHTML += `<div class="dayLabel">Monday</div>`;
+  calendar.innerHTML += `<div class="dayLabel">Tuesday</div>`;
+  calendar.innerHTML += `<div class="dayLabel">Wednesday</div>`;
+  calendar.innerHTML += `<div class="dayLabel">Thursday</div>`;
+  calendar.innerHTML += `<div class="dayLabel">Friday</div>`;
+  calendar.innerHTML += `<div class="dayLabel">Saturday</div>`;
+  calendar.innerHTML += `<div class="dayLabel">Sunday</div>`;
+  for(let i = 0; i<day; i++){
+    calendar.innerHTML += `<div class="day"></div>`;
+  }
+  let month = e.getMonth()+1;
+  let date = e.getDate();
+  let today = day;
+  let numDays = days(month, e.getFullYear());
+  for (let i = 0; i<28; i++){
+    let v = getDayValues(values, today);
+    let htmladd = `<div class="day"><div class="date">${month}/${date}</div>`
+    for (let z = 0; z<v.length; z++){
+      let time = v[z][1];
+      let hoursMinutes = time.split(":");
+      let hours = parseInt(hoursMinutes[0]);
+      let mTime = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      htmladd += `<span class="note">${hours}:${hoursMinutes[1]} ${mTime} ${v[z][0]}</span><br>`;
+    }
+    htmladd += `</div>`;
+    calendar.innerHTML += htmladd;
+    date++;
+    if (date > numDays){
+      date = 1;
+      month++;
+      numDays = days(month, e.getFullYear());
+    }
+    today++;
+    if (today == 7){
+      today = 0;
+    }
+  }
+  //textFit(document.querySelector(".dayLabel"));
+}
+
+function getDayValues(values, weekDay){
+  let retVals = [];
+  for (let k = 0; k<values.length; k++){
+    if (values[k][2].includes(weekDay)){
+      retVals.push(values[k]);
+    }
+  }
+  // Once we have the values we then need to sort the array so they display properly.
+  let n = retVals.length;
+  for (let l = 0; l < n-1; l++){
+    for (let m = 0; m < n-l-1; m++){
+      let time = retVals[m][1];
+      let hoursMinutes = time.split(":");
+      let hours = parseInt(hoursMinutes[0]);
+      let minutes = parseInt(hoursMinutes[1]);
+      let overallTime = hours*24 + minutes;
+      let time2 = retVals[m+1][1];
+      let hoursMinutes2 = time2.split(":");
+      let hours2 = parseInt(hoursMinutes2[0]);
+      let minutes2 = parseInt(hoursMinutes2[1]);
+      let overallTime2 = hours2*24 + minutes2;
+      if (overallTime > overallTime2){
+        let temp = retVals[m];
+        retVals[m] = retVals[m+1];
+        retVals[m+1] = temp;
+      }
+    }
+  }
+  //console.log(retVals);
+  return retVals;
+}
+
+closes[2].onclick = function(){
+  modal3.style.display = "none";
+}
 closes[1].onclick = function() {
   modal2.style.display = "none";
 }
@@ -29,6 +124,9 @@ window.onclick = function(event) {
   else if (event.target == modal2){
     modal2.style.display = "none";
   }
+  else if (event.target == modal3){
+    modal3.style.display = "none";
+  }
 }
 
 try {
@@ -37,7 +135,6 @@ try {
       values = result.values;
       if(values != undefined){
         //values[0][3] = !values[0][3];
-        let e = new Date();
         //console.log(e.getDate());
         let currentTime = (e.getHours()*60) + e.getMinutes();
         for (let i = 0; i<values.length; i++){
@@ -56,10 +153,6 @@ try {
                 if (currentTime>storedTime || (d.getDate()<e.getDate() || (d.getDate() > 1 && e.getDate() == 1))){
                   // has to be later in the day to reset the check
                   console.log(d.getDate()+" "+e.getDate());
-                  let day = e.getDay()-1;
-                  if (day<0){
-                      day = 6;
-                  }
                   if (values[i][2].includes(day)){
                     if ((d.getDate() == e.getDate())){
                       let clickTime = (d.getHours()*60)+d.getMinutes();
@@ -85,6 +178,7 @@ try {
         }
         chrome.storage.sync.set({values: values});
         updateTasks(values);
+        populateCalendar(values);
     }
   })
 } catch (error) {

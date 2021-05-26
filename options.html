@@ -6,7 +6,10 @@
   </head>
   <body>
     <h1>
-      <p class="title">RoutineList</p>
+      <p class="title">
+        RoutineList
+        <span id="calendarButton" class="calendarButton">Calendar view</span>
+      </p>
     </h1>
     <div id="taskHolder">
       <button id="addTask" class="task">+ Add Task</button>
@@ -190,6 +193,16 @@
             <button class="delete" type="submit">Delete Task</button>
           </div>
         </form>
+      </div>
+    </div>
+    <div id="calendarModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <br>
+        <div><div class="calendarTitle">Calendar</div></div>
+        <div id="calendar" class="calendar">
+          If you're reading this, there's a problem with the tasks.
+        </div>
       </div>
     </div>
     <script src="options.js"></script>

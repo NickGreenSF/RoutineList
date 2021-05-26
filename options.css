@@ -24,6 +24,11 @@ body{
   border: 1px solid #888;
   width: 40%; /* Could be more or less, depending on screen size */
   height: 90%;
+  overflow: scroll;
+}
+
+#calendarModal .modal-content{
+  width: 90%;
 }
 
 /* The Close Button */
@@ -100,4 +105,58 @@ button{
 
 .delete{
   background-color: lightsalmon;
+}
+
+.calendar{
+  margin:0px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day{
+  border: 1px solid black;
+  background-color: beige;
+  padding: 5px;
+}
+
+.date{
+  font-size: 150%;
+}
+
+.note{
+  margin-bottom: 10px;
+  font-size: 125%;
+}
+
+.calendarButton{
+  float: right;
+  margin-right: 10%;
+  font-style: normal;
+  background-color: beige;
+  border: 2px solid bisque;
+  padding: .4em;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: normal; 
+}
+
+.note {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.dayLabel{
+  font-size: 2vw;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: bisque;
+  border: 1px solid black;
+}
+
+.calendarTitle{
+  grid-column-start: 1;
+  grid-column-end: 8;
+  text-align: center;
+  background-color: burlywood;
+  padding: 10px;
+  border: 1px solid black;
+  font-size: 2em; 
+  font-weight: bold;
 }
