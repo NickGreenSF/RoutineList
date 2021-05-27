@@ -1,4 +1,4 @@
-body{
+body {
   text-align: left;
 }
 
@@ -12,8 +12,8 @@ body{
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
@@ -27,7 +27,7 @@ body{
   overflow: scroll;
 }
 
-#calendarModal .modal-content{
+#calendarModal .modal-content {
   width: 90%;
 }
 
@@ -38,7 +38,7 @@ body{
   font-size: 28px;
   font-weight: bold;
 }
-  
+
 .close:hover,
 .close:focus {
   color: black;
@@ -46,27 +46,28 @@ body{
   cursor: pointer;
 }
 
-.task{
+.task {
   width: 40%;
 }
 
-form div{
+form div {
   margin-left: 25%;
   margin-right: 25%;
   width: 50%;
   text-align: center;
   font-size: xx-large;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Gill Sans", sans-serif;
   margin-top: 5%;
 }
 
-div input[type=text], div input[type=time]{
+div input[type="text"],
+div input[type="time"] {
   font-size: xx-large;
   width: 100%;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Gill Sans", sans-serif;
 }
 
-input[type=time]{
+input[type="time"] {
   text-align: center;
 }
 
@@ -82,81 +83,82 @@ input[type=time]{
   transform: scale(1);
 }
 
-table{
+table {
   margin-left: auto;
   margin-right: auto;
   font-style: italic;
 }
 
-.weekdays{
+.weekdays {
   margin-top: 0%;
 }
 
-button{
+button {
   border: 2px solid bisque;
   background-color: beige;
   font-size: xx-large;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Gill Sans", sans-serif;
   padding-left: 5%;
   padding-top: 3%;
   padding-right: 5%;
   padding-bottom: 3%;
 }
 
-.delete{
+.delete {
   background-color: lightsalmon;
 }
 
-.calendar{
-  margin:0px;
+.calendar {
+  margin: 0px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
 
-.day{
+.day {
   border: 1px solid black;
   background-color: beige;
   padding: 5px;
 }
 
-.date{
+.date {
   font-size: 150%;
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom: 2%;
 }
 
-.note{
+.note {
   margin-bottom: 10px;
   font-size: 125%;
+  font-family: "Gill Sans", sans-serif;
 }
 
-.calendarButton{
+.calendarButton {
   float: right;
   margin-right: 10%;
   font-style: normal;
   background-color: beige;
   border: 2px solid bisque;
-  padding: .4em;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: normal; 
+  padding: 0.4em;
+  font-family: "Gill Sans", sans-serif;
+  font-weight: normal;
 }
 
-.note {
-  font-family: 'Times New Roman', Times, serif;
-}
-
-.dayLabel{
+.dayLabel {
   font-size: 2vw;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Gill Sans", sans-serif;
   background-color: bisque;
   border: 1px solid black;
+  text-align: center;
 }
 
-.calendarTitle{
+.calendarTitle {
   grid-column-start: 1;
   grid-column-end: 8;
   text-align: center;
   background-color: burlywood;
   padding: 10px;
   border: 1px solid black;
-  font-size: 2em; 
+  font-size: 2em;
   font-weight: bold;
 }

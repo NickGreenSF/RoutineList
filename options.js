@@ -284,9 +284,15 @@ function editTaskModal(id){
 function changeTask(id, form){
   // if id is -1, a new task is created, if not, the task at that ID is updated to reflect the values in the form.
   let inputs = form.querySelectorAll("input");
+  // We first have to check the form for null inputs.
+  console.log(inputs[1].value);
+  if (inputs[0].value == "" || inputs[1].value == ""){
+    alert("Please fill out all fields. Your task has not been submitted.");
+    return;
+  }
   if (id == -1){
     let weekdays = [];
-    console.log(inputs[0].value);
+    //console.log(inputs[0].value);
     chrome.storage.sync.get(['values'], function(result){
       let values = result.values;
       let current = ["", "", [], false, (new Date()).getTime()];

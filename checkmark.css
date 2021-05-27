@@ -1,47 +1,47 @@
-.task{
-    background-color: beige;
-    width: 70%;
-    /*padding: .4em;*/
-    font-size: 2em;
-    font-family:'Times New Roman', Times, serif;
-    border: 2px solid bisque;
-    margin-left: 5%;
-    margin-bottom: .5em;
-    padding: .5em;
-    cursor: pointer;
-  }
-  
-  .task input {
-    position: absolute;
-    opacity: 0;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-  }
-  
-  .checkmark {
-    display: inline-grid;
-    width: .6em;
-    height: .6em;
-    border: 0.1em solid currentColor;
-    pointer-events: none;
-  }
-  
-  .checkmark svg {
-    transition: transform .1s ease-in 25ms;
-    transform: scale(0);
-    transform-origin: bottom left;
-  }
-  
-  .task input:checked + .checkmark svg {
-    transform: scale(1);
-  }
+.task {
+  background-color: beige;
+  width: 70%;
+  /*padding: .4em;*/
+  font-size: 2em;
+  font-family: "Gill Sans", sans-serif;
+  border: 2px solid bisque;
+  margin-left: 5%;
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  cursor: pointer;
+}
 
-  /*addTask{
+.task input {
+  position: absolute;
+  opacity: 0;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.checkmark {
+  display: inline-grid;
+  width: 0.6em;
+  height: 0.6em;
+  border: 0.1em solid currentColor;
+  pointer-events: none;
+}
+
+.checkmark svg {
+  transition: transform 0.1s ease-in 25ms;
+  transform: scale(0);
+  transform-origin: bottom left;
+}
+
+.task input:checked + .checkmark svg {
+  transform: scale(1);
+}
+
+/*addTask{
       cursor:pointer;
   }*/
 
-  .title{
-    margin-left: 5%;
-    font-style: italic;
-  }
+.title {
+  margin-left: 5%;
+  font-style: italic;
+}

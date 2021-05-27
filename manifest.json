@@ -1,7 +1,7 @@
 {
     "name": "RoutineList",
     "description": "Keep Track of Your Daily Tasks",
-    "version": "0.3",
+    "version": "0.4",
     "icons": {
       "16": "routinelist16.png",
       "48": "routinelist48.png",
