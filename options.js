@@ -56,6 +56,9 @@ function populateCalendar(values) {
       let hours = parseInt(hoursMinutes[0]);
       const mTime = hours >= 12 ? 'PM' : 'AM';
       hours %= 12;
+      if (hours === 0){
+        hours = 12;
+      }
       htmladd += `<span class="note">${hours}:${hoursMinutes[1]} ${mTime} ${v[z][0]}</span><br>`;
     }
     htmladd += `</div>`;

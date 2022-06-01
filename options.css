@@ -102,6 +102,7 @@ button {
   padding-top: 3%;
   padding-right: 5%;
   padding-bottom: 3%;
+  cursor: pointer;
 }
 
 .delete {
@@ -142,6 +143,7 @@ button {
   padding: 0.4em;
   font-family: "Gill Sans", sans-serif;
   font-weight: normal;
+  cursor: pointer;
 }
 
 .dayLabel {
